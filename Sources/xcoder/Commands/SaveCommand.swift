@@ -32,9 +32,9 @@ public struct SaveCommand: Command {
 		for path in arguments.xcodeProjects {
 			let projectFile: ProjectFile
 			do {
-				projectFile = try ProjectFile(url: Foundation.URL(fileURLWithPath: path.asString))
+				projectFile = try ProjectFile(url: Foundation.URL(fileURLWithPath: path.pathString))
 			} catch {
-				throw Error.invalidProject(path: path.asString)
+				throw Error.invalidProject(path: path.pathString)
 			}
 			try projectFile.save()
 		}

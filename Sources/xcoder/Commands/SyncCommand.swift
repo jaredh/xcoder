@@ -43,9 +43,9 @@ public struct SyncCommand: Command {
 		
 		let projectFile: ProjectFile
 		do {
-			projectFile = try ProjectFile(url: Foundation.URL(fileURLWithPath: arguments.xcodeproj.asString))
+			projectFile = try ProjectFile(url: Foundation.URL(fileURLWithPath: arguments.xcodeproj.pathString))
 		} catch {
-			throw Error.invalidProject(path: arguments.xcodeproj.asString)
+			throw Error.invalidProject(path: arguments.xcodeproj.pathString)
 		}
 		let group = try projectFile.group(forPath: arguments.group)
 		

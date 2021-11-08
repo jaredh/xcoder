@@ -17,18 +17,18 @@ extension XcodeProjectLoading {
 	func loadedProject() throws -> ProjectFile {
 		func projectURL(from path: AbsolutePath) throws -> Foundation.URL {
 			if path.extension == "xcodeproj" {
-				return URL(fileURLWithPath: path.asString)
+				return URL(fileURLWithPath: path.pathString)
 			}
 			
 			guard localFileSystem.isDirectory(path) else {
-				throw Error.invalidProject(path: path.asString)
+				throw Error.invalidProject(path: path.pathString)
 			}
 			
 			let dirs = try localFileSystem.getDirectoryContents(path)
 			if let xcodeproj = dirs.sorted().first(where: { $0.hasSuffix("xcodeproj") }) {
-				return URL(fileURLWithPath: xcodeproj, relativeTo: URL(fileURLWithPath: path.asString, isDirectory: true))
+				return URL(fileURLWithPath: xcodeproj, relativeTo: URL(fileURLWithPath: path.pathString, isDirectory: true))
 			}
-			throw Error.invalidProject(path: path.asString)
+			throw Error.invalidProject(path: path.pathString)
 		}
 		let xcodeprojURL = try projectURL(from: xcodeproj)
 		let projectFile: ProjectFile
