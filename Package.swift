@@ -14,7 +14,7 @@ let package = Package(
 	],
 	dependencies: [
 		.package(url: "https://github.com/g-Off/XcodeProject.git", from: "0.5.1"),
-		.package(url: "https://github.com/jaredh/CommandRegistry.git", from: "0.1.3")
+		.package(url: "https://github.com/jaredh/CommandRegistry.git", from: "0.1.4")
 	],
 	targets: [
 		.target(
